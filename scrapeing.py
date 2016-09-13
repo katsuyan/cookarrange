@@ -1,7 +1,7 @@
 import urllib.request
 from bs4 import BeautifulSoup
 
-target_url = 'http://cookpad.com/recipe/3400255'
+target_url = 'http://cookpad.com/recipe/2736158'
 html = urllib.request.urlopen(target_url).read()
 soup = BeautifulSoup(html, "lxml")
 
@@ -19,6 +19,8 @@ foods = soup.select("#ingredients_list")[0]
 foods = foods.find_all(class_='ingredient')
 for food in foods:
     name = food.find(class_='name').string
+    if name is None:
+        name = food.find('a').string
     print(name)
     quantity = food.find(class_='ingredient_quantity').string
     print(quantity)
@@ -27,7 +29,6 @@ steps = soup.select('#steps')[0]
 steps = steps.find_all(class_='step_text')
 for step in steps:
     print(step.get_text().strip())
-print()
 
 advice = soup.select("#advice")[0]
 print(advice.get_text().strip())
