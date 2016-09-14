@@ -16,7 +16,11 @@ def get_recipe(id):
     imgURL = img_tag.find('img')['src']
     data['imgURL'] = imgURL
 
-    people = soup.select(".servings_for")[0].string.strip()
+    people = soup.select(".servings_for")
+    if len(people) == 0:
+        pepole = ''
+    else:
+        people = people[0].string.strip()
     data['people'] = people
 
     ingredients_html = soup.select("#ingredients_list")[0]
