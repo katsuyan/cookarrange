@@ -2,11 +2,12 @@ import urllib.request
 from bs4 import BeautifulSoup
 import json
 import re
+import urllib.parse
 
-def get_menu():
+def get_menu(target):
     data = []
 
-    target_url = 'http://cookpad.com/search/%E9%87%8E%E8%8F%9C%E7%82%92%E3%82%81%20%E7%B0%A1%E5%8D%98?order=popularity'
+    target_url = 'http://cookpad.com/search/' + urllib.parse.quote(target, safe='')
     html = urllib.request.urlopen(target_url).read()
     soup = BeautifulSoup(html, "lxml")
 
