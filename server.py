@@ -1,12 +1,12 @@
 import json
 import falcon
+import scraping
+
 class HelloResource(object):
     def on_get(self, req, res):
-        msg = {
-            "message": "Welcome to the Falcon"
-        }
+        msg = scraping.get_recipe('2497431')
         res.body = json.dumps(msg)
-        
+
 app = falcon.API()
 app.add_route("/", HelloResource())
 
