@@ -5,7 +5,7 @@ import scraping
 class HelloResource(object):
     def on_get(self, req, res):
         msg = scraping.get_recipe('2497431')
-        res.body = json.dumps(msg)
+        res.body = msg
 
 app = falcon.API()
 app.add_route("/", HelloResource())
