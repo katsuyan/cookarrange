@@ -1,10 +1,10 @@
 import json
 import falcon
-import scraping
+import scraping_recipe
 
 class HelloResource(object):
     def on_get(self, req, res):
-        msg = scraping.get_recipe('2497431')
+        msg = scraping_recipe.get_recipe('2497431')
         res.body = msg
 
 app = falcon.API()
